@@ -35,3 +35,19 @@ button {
   border-radius: 5px;
   box-shadow: 2px 5px 5px #333;
 }
+
+#time-table, #time-table td{
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#table-header {
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#time-table td {
+  font-size: 12px;
+}

@@ -30,9 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const newSelect = document.createElement("select");
   newSelect.id = "priority-level";
   
-  const newOptgroup = document.createElement("optgroup");
-  newOptgroup.label = "Priority";
-
   const newOptionLow = document.createElement("option");
   newOptionLow.value = "Low";
   newOptionLow.textContent = "Low";
@@ -45,7 +42,44 @@ document.addEventListener("DOMContentLoaded", () => {
   newOptionHigh.value = "High";
   newOptionHigh.textContent = "High";
 
-  newOptgroup.append(newOptionLow, newOptionMedium, newOptionHigh);
-  newSelect.append(newOptgroup);
+  newSelect.append(newOptionLow, newOptionMedium, newOptionHigh);
   document.querySelector("#new-task-description").after(newSelect);
+
+
+  let timeArray = ["12:00AM"];
+  for (let j = 1; j < 12; j++){
+    timeArray.push(`${j}:00AM`);
+  };
+
+  let finalTime = timeArray.concat(timeArray.map(x=>`${x.slice(0,-2)}PM`)).slice(5);
+
+
+  const timeStart = document.createElement("select");
+  const timeEnd = document.createElement("select");
+  timeStart.id = "time-start";
+  timeEnd.id = "time-end";
+  document.querySelector("#list").before(timeStart);
+  document.querySelector("#list").before(timeEnd);
+
+  //Creating time table 
+  finalTime.forEach(function(time) {
+    const hourBlock = document.createElement("tr");
+    const hourBlockText = document.createElement("td");
+    hourBlock.id = `${time}`;
+    hourBlockText.textContent = `${time}`;
+    hourBlock.append(hourBlockText);
+    document.querySelector('#last-line').before(hourBlock);
+
+    //Creating the start time-selector list
+    const newStartOption = document.createElement("option");
+    newStartOption.value = `${time}`;
+    newStartOption.textContent = `${time}`;
+    timeStart.append(newStartOption);
+
+    //Creating the end time-selector list
+    const newEndOption = document.createElement("option");
+    newEndOption.value = `${time}`;
+    newEndOption.textContent = `${time}`;
+    timeEnd.append(newEndOption);
+  });
 });
